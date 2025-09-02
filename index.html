@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Резюме</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    header {
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 5em; /* Увеличенный размер заголовка */
+      margin-bottom: 15px;
+    }
+
+    header p {
+      font-size: 2em; /* Увеличенный размер параграфа */
+      font-weight: lighter;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .icon {
+      position: relative;
+      font-size: 2.5em;
+      color: white;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .icon:hover {
+      color: #4CAF50;
+    }
+
+    .icon span {
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 0.4em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .icon:hover span {
+      opacity: 1;
+    }
+
+    /* Контейнер кнопок */
+    .top-buttons {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .top-button {
+      background: #ffffff10;
+      border: 2px solid #ffffff50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .top-button:hover {
+      background: #ffffff30;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #ffffff50;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Кнопки в правом верхнем углу -->
+  <div class="top-buttons">
+    <a href="mypc.html" class="top-button">Мой PC</a>
+    <a href="personality.html" class="top-button">Личность</a>
+  </div>
+
+  <header>
+    <h1>Тойбай Дулат</h1>
+    <p>Будущий програмист</p>
+  </header>
+
+  <div class="social-icons">
+    <a href="https://discord.com/users/ttiauld84" target="_blank" class="icon">
+      <i class="fab fa-discord"></i>
+      <span>Discord</span>
+    </a>
+    <a href="https://steamcommunity.com/profiles/76561199250001325/" target="_blank" class="icon">
+      <i class="fab fa-steam"></i>
+      <span>Steam</span>
+    </a>
+    <a href="https://www.instagram.com/uglyfaaacekid/" target="_blank" class="icon">
+      <i class="fab fa-instagram"></i>
+      <span>Instagram</span>
+    </a>
+    <a href="https://open.spotify.com/playlist/7FtNVgwehsYP0ayRgSxPov?si=cd461ee4857744b1" target="_blank" class="icon">
+      <i class="fab fa-spotify"></i>
+      <span>Spotify</span>
+    </a>
+    <a href="warrust6@gmail.com" class="icon">
+      <i class="fas fa-envelope"></i>
+      <span>Email</span>
+    </a>
+  </div>
+
+</body>
+</html>
