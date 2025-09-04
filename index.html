@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Анонимные признания</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #8e2de2, #4a00e0);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 { margin-bottom: 10px; }
+    form {
+      margin: 20px auto;
+      max-width: 400px;
+      display: flex;
+      gap: 10px;
+    }
+    textarea {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      resize: none;
+      font-size: 14px;
+    }
+    button {
+      background: #ff4081;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      transition: 0.3s;
+    }
+    button:hover { background: #ff79a8; }
+    .confessions {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      animation: fadeIn 0.5s ease;
+      word-wrap: break-word;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <h1>💌 Анонимные признания</h1>
+  <p>Напиши признание — увидят все, но никто не узнает, что это ты 😏</p>
+  
+  <form id="form">
+    <textarea id="input" rows="2" placeholder="Напиши сюда..." required></textarea>
+    <button type="submit">➤</button>
+  </form>
+  
+  <div class="confessions" id="confessions"></div>
+  
+  <!-- Firebase SDK (модульный) -->
+  <script type="module">
+  // Импорт Firebase SDK
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { 
+    getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp 
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // 🔹 Твой конфиг
+  const firebaseConfig = {
+    apiKey: "AIzaSyBjkA1Vd5jcv5NIMLMW8NwvidKhFxg0_P0",
+    authDomain: "anon-552cc.firebaseapp.com",
+    projectId: "anon-552cc",
+    storageBucket: "anon-552cc.firebasestorage.app",
+    messagingSenderId: "959383738218",
+    appId: "1:959383738218:web:082298406b1ee2fb21f713",
+    measurementId: "G-2W4LCR37VL"
+  };
+
+  // 🚀 Инициализация Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.getElementById('form');
+  const input = document.getElementById('input');
+  const confessionsDiv = document.getElementById('confessions');
+
+  // ✨ Добавление признания
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (text) {
+      await addDoc(collection(db, "confessions"), {
+        text,
+        timestamp: serverTimestamp()
+      });
+      input.value = "";
+    }
+  });
+
+  // 🔄 Отображение в реальном времени
+  const q = query(collection(db, "confessions"), orderBy("timestamp", "desc"));
+  onSnapshot(q, (snapshot) => {
+    confessionsDiv.innerHTML = "";
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.textContent = data.text;
+      confessionsDiv.appendChild(card);
+    });
+  });
+</script>
+</body>
+</html>
